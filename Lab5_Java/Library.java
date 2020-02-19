@@ -13,31 +13,29 @@ public class Library {
     }
 
     public void addBook (Book b) {
-        // Your code here
         library.add(b);
     }
 
     public void sort() {
-        // Your code here
-        java.util.Comparator<Book> compare;
-        compare = new BookComparator();
-        Book tmp;
-        for ( int i = 0 ; i < library.size() - 1 ; i++ ) {
-            for ( int j = i + 1 ; j < library.size() ; j++ ) {
-                if ( compare.compare(library.get(i), library.get(j)) < 0 ) {
-                    tmp = library.get(j);
-                    library.set(i, library.get(j));
-                    library.set(j, tmp);
-                }
-            }
-        }
-        
+        java.util.Comparator<Book> compare = new BookComparator();
+        int i, j, argMin;
+  			Book tmp;
+  			for ( i = 0 ; i < getSize() - 1 ; i++ ) {
+  				argMin = i;
+  				for ( j = i + 1 ; j < getSize() ; j++ ) {
+  					if ( compare.compare(library.get(j), library.get(argMin)) < 0 ) {
+  						argMin = j;
+  					}
+  				}
+    			tmp = library.get(argMin);
+    			library.set(argMin, library.get(i));
+    			library.set(i, tmp);
+  		  }
     }
 
-
     public void printLibrary() {
-        // Your code here
         sort();
         System.out.println(library);
     }
+
 }

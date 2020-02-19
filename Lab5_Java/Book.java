@@ -6,34 +6,43 @@ public class Book {
     private int year;
 
     public Book (String author, String title, int year) {
-        // Your code here
         this.author = author;
         this.title = title;
         this.year = year;
     }
 
     public String getAuthor() {
-        // Your code here
         return author;
     }
 
     public String getTitle() {
-        // Your code here
         return title;
     }
 
     public int getYear() {
-        // Your code here
         return year;
     }
 
     public boolean equals(Object other) {
-        // Your code here
-        return this.equals(other);
+        if ( other == null ) {
+          return false;
+        }
+        if ( other == this ) {
+          return true;
+        }
+        if ( getClass() != other.getClass() ){
+            return false;
+        }
+        Book otherBook = (Book) other;
+        return (author == otherBook.author
+        || author != null && author.equals(otherBook.author))
+        && (title == otherBook.title
+        || title != null && title.equals(otherBook.title))
+        && year == otherBook.year;
     }
 
     public String toString() {
-        // Your code heresdf
         return author + ": " + title + " (" + year + ")";
     }
+
 }
